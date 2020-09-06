@@ -1,0 +1,152 @@
+<div class="container form-inline" *ngIf="getFavorite().length">
+  <h5
+    class="mr-6 text-success"
+    style="
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    "
+  >
+    FAVORITES
+  </h5>
+  <table
+    id="favorites-table"
+    class="table table-striped table-bordered table-hover"
+    style="
+      background-color: #f0f4c3;
+      font-size: 15px;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    "
+  >
+    <thead>
+      <tr
+        style="
+          background-color: rgba(205, 220, 57, 0.7);
+          font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+            'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        "
+      >
+        <th class="text-center text-dark table-bordered">FAVORITE</th>
+        <th
+          style="cursor: pointer"
+          class="text-dark"
+          *ngFor="let col of columns"
+          (click)="sortByColumnName(col.value)"
+          (change)="descByColumn(col.value)"
+        >
+          {{ col.name }}
+        </th>
+      </tr>
+    </thead>
+    <tbody class="table-bordered">
+      <tr
+        *ngFor="let asset of getFavorite() | filter: filterText"
+        style="
+          font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+            'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        "
+      >
+        <div
+          class="text-center m-1"
+          style="cursor: pointer"
+          (click)="
+            !checkIfExistInFavorite(asset.id)
+              ? saveAsFavorite(asset.id)
+              : removeAsFavorite(asset.id)
+          "
+        >
+          <i
+            class="fa fa-custom text-success"
+            [ngClass]="{
+              'far fa-star-o': !checkIfExistInFavorite(asset.id),
+              'fa-star': checkIfExistInFavorite(asset.id)
+            }"
+            aria-hidden="true"
+          ></i>
+        </div>
+        <ng-container *ngFor="let col of columns">
+          <ng-container *ngIf="col.value == 'lastUpdate'; else notLastUpdate">
+            <!-- format date on UI -->
+            <td>{{ asset[col.value] | date: "medium" }}</td>
+          </ng-container>
+          <ng-template #notLastUpdate>
+            <td>{{ asset[col.value] || "N/A" }}</td>
+          </ng-template>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container">
+  <input
+    id="filter"
+    name="filter"
+    class="m-1 form-control w-25 pull-left"
+    style="
+      background-color: #e1f5fe;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    "
+    [(ngModel)]="filterText"
+    placeholder="Search by id, stock or type"
+    type="text"
+  />
+
+  <table
+    id="stocks-currency-table"
+    class="table table-striped table-info table-bordered table-hover"
+  >
+    <thead>
+      <tr
+        style="
+          background-color: #efcd58;
+          font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+            'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        "
+      >
+        <th class="text-center text-dark table-bordered">FAVORITE</th>
+        <th
+          style="cursor: pointer"
+          class="text-dark"
+          *ngFor="let col of columns"
+          (click)="sortByColumnName(col.value)"
+          (change)="descByColumn(col.value)"
+        >
+          {{ col.name }}
+        </th>
+      </tr>
+    </thead>
+    <tbody class="table-bordered">
+      <tr *ngFor="let asset of assets | filter: filterText">
+        <div
+          class="text-center m-1"
+          style="cursor: pointer"
+          (click)="
+            !checkIfExistInFavorite(asset.id)
+              ? saveAsFavorite(asset.id)
+              : removeAsFavorite(asset.id)
+          "
+        >
+          <i
+            class="fa fa-custom text-info"
+            [ngClass]="{
+              'far fa-star-o': !checkIfExistInFavorite(asset.id),
+              'fa-star': checkIfExistInFavorite(asset.id)
+            }"
+            aria-hidden="true"
+          ></i>
+        </div>
+        <ng-container *ngFor="let col of columns">
+          <ng-container *ngIf="col.value == 'lastUpdate'; else notLastUpdate">
+            <!-- format date on UI -->
+            <td>{{ asset[col.value] | date: "medium" }}</td>
+          </ng-container>
+          <ng-template #notLastUpdate>
+            <td>{{ asset[col.value] || "N/A" }}</td>
+          </ng-template>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</div>
