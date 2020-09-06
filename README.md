@@ -46,6 +46,9 @@ Run `ng test` or `npm test` to execute the unit tests via [Karma](https://karma-
 2. Allow to sort for each one of the model fields
 3. Allow to filter for each one of the model fields
 4. Add to favorites button
-5. Favorites should be persist to localstorage
-6. Favorites ID should be pin to the top of the table
+5. Favorite persists to localstorage
+6. Favorites  pins to the top of the table
+
+![alt text](https://github.com/NagashreeBhat/stockboard/blob/master/ScreenCapture/Favorites.png?raw=true)
+
 
