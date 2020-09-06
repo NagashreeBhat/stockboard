@@ -34,7 +34,7 @@ export class AssetTableComponent implements OnInit {
       value: 'id',
     },
     {
-      name: 'STOCK',
+      name: 'ASSET',
       value: 'assetName',
     },
     {
