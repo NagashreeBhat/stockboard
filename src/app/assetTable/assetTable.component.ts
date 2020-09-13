@@ -61,9 +61,9 @@ export class AssetTableComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    debugger;
+    //debugger;
     this.date = new Date();
-    console.log('Date', this.date);
+    //console.log('Date', this.date);
 
     this.updateData();
     this.refresh();
@@ -71,7 +71,7 @@ export class AssetTableComponent implements OnInit {
 
   // sorting based on columns
   sortByColumnName(col: string): void {
-    debugger;
+    //debugger;
     switch (col) {
       case 'id':
       case 'price':
@@ -130,7 +130,7 @@ export class AssetTableComponent implements OnInit {
   }
 
   private moveFavoritesToTop(): void {
-    debugger;
+    //debugger;
     // find favorites from local storage
     const favoritesFromLocalStorage = new Set(Object.keys(localStorage));
     // filter favorites from assets
@@ -146,7 +146,7 @@ export class AssetTableComponent implements OnInit {
   updateData() {
     this.dataService.getAssets().subscribe(
       (response) => {
-        console.log('response' + JSON.stringify(response));
+        // console.log('response' + JSON.stringify(response));
 
         // get assets from data service
         this.assets = response;
