@@ -9,7 +9,7 @@ price are changed for each update by -1 to 1 and with the current timestamp, the
 
 The code is runnable on Chrome , with simple steps `npm install` then run the project with `npm start`
 
-Stack: Angular 10.10, ES6/ES7, Typescript
+Stack: Angular CLI 10.10, ES6/ES7, Typescript
 
 
 ## Model 
